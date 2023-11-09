@@ -12,6 +12,7 @@ public class GetBoardControl implements Command {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("dddd");
 		String path = "board/getboard.tiles";
 		// boardNo : 1 => DB search = jsp.
 		String bno = req.getParameter("bno");
