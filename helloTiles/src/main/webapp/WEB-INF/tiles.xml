@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions SYSTEM "path/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+<!-- 1.myapp.homepage : 기본 템플릿  -->
+<!-- 	<definition name="myapp.homepage" template="/layouts/classic.jsp"> -->
+	<!-- 아래 래이아웃을 사용하려면 여기의 name인 myapp.homepage.tiles로 주소를 적어야 함 -->
+<!-- 		<put-attribute name="title" value="Tiles tutorial homepage" /> -->
+<!-- 		<put-attribute name="header" value="/tiles/banner.jsp" /> -->
+<!-- 		<put-attribute name="menu" value="/tiles/common_menu.jsp" /> -->
+<!-- 		<put-attribute name="body" value="/tiles/home_body.jsp" /> -->
+<!-- 		<put-attribute name="footer" value="/tiles/credits.jsp" /> -->
+<!-- 	</definition> -->
+	
+	<!-- 	<definition name="WILDCARD:*/*" extends="myapp.homepage"> -->
+	<!-- 		<put-attribute name="body" value ="/{1}/{2}.jsp"/> -->
+	<!-- 	</definition> -->
+	
+	
+	
+<!-- 2.boardpage : 게시판 템플릿  -->
+	<definition name="boardpage" template="/WEB-INF/layouts/template.jsp"><!-- 아래 레이아웃을 쓰려면  url에 board폴더를 적어야 함  -->
+		<put-attribute name="title" value="게시판 템플릿" />
+		<put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layouts/menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/layouts/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+	</definition>
+	
+		<definition name="WILDCARD:board/*" extends="boardpage">
+			<put-attribute name="body" value ="/WEB-INF/board/{1}.jsp"/>
+		</definition>
+
+
+
+<!-- 3.adminpage: 관리자 템플릿 -->
+	<definition name="adminpage" template="/WEB-INF/layouts/admtemplate.jsp"><!-- 아래의 레이앙웃을 쓰려면 url에 admin폴더를 적어야 함 -->
+		<put-attribute name="title" value="관리자 템플릿" />
+		<put-attribute name="header" value="/WEB-INF/layouts/admheader.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/layouts/admmenu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/layouts/admbody.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/admfooter.jsp" />
+	</definition>
+	
+		<definition name="WILDCARD:admin/*" extends="adminpage">
+			<put-attribute name="body" value ="/WEB-INF/admin/{1}.jsp"/>
+		</definition>
+		
+		<!-- 위의 두 주소가 쓰이지 않으면 이걸 열어주겠다. -->
+		<definition name="WILDCARD:*/*" extends="boardpage"> 
+			<put-attribute name="body" value ="/WEB-INF/{1}/{2}.jsp"/>
+		</definition>
+		
+		
+		
+		<!--  위의 상황 정리
+		board/boardList.tiles -> board/boardList.jsp
+		admin/memberList.tiles -> admin/memberList.jsp
+		member/memberList.tiles -> member/memberList.jsp -->
+		
+<!-- 	<definition name="WILDCARD:member/*" extends="myapp.homepage"> 폴더역할/*파일역할  ex) member/*/* -> member폴더 아래의 어떤폴더 아래의 파일 -->
+<!-- 	 와일드 카드는 member의 폴더 아래에 어떤 파일이 생길지 모르지만 거기에 위의 템플릿 레이아웃을 연결해주겠따. --> 
+<!-- 		<put-attribute name="body" value ="member/{1}.jsp"/>멤버폴더 아래의 name이 바디인것만 똑같은 jsp파일을 열어주겠따 -->
+<!-- 	</definition> -->
+	
+	<!-- 예시 1번 : admin -->
+<!-- 	<definition name="WILDCARD:admin/*" extends="myapp.homepage"> -->
+<!-- 		<put-attribute name="body" value ="admin/{1}.jsp"/> -->
+<!-- 	</definition> -->
+
+	<!-- 예시 2번 : 어느 파일이든 주소가 tiles로 끝나는 애들(web.xml참고)-->
+	
+	
+</tiles-definitions>
